@@ -6,7 +6,7 @@ public class EventLoop {
     State state = new State();
     UI ui = new UI();
     int row, col;
-    
+
     public static void main(String[] args) {
         EventLoop eventLoop = new EventLoop();
         eventLoop.run();
@@ -32,7 +32,7 @@ public class EventLoop {
                 col = ui.getMoveCol(state.getWhoseMove(), state.getXName(), state.getOName());
                 if (ui.isLegalMove(state, row, col)) {
                     state.setGameState(Constants.MAKE_MOVE);
-                
+
                 }
 
             } else if (gameState == Constants.GET_O_MOVE) {
