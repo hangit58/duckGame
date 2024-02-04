@@ -17,7 +17,11 @@ public class EventLoop {
             int gameState = state.getGameState();
             if (gameState == Constants.STANDBY) {
                 state.setGameState(Constants.GET_X_NAME);
-
+                for (int i = 0; i <= 2; i++) {
+                    for (int j = 0; j <= 2; j++) {
+                        state.setBoardCell(i, j, 0);
+                    }
+                }
             } else if (gameState == Constants.GET_X_NAME) {
                 state.setXName(ui.promptForName("X"));
                 state.setGameState(Constants.GET_O_NAME);
@@ -32,7 +36,8 @@ public class EventLoop {
                 col = ui.getMoveCol(state.getWhoseMove(), state.getXName(), state.getOName());
                 if (ui.isLegalMove(state, row, col)) {
                     state.setGameState(Constants.MAKE_MOVE);
-
+                } else {
+                    ui.printInvalidRowOrColumn();
                 }
 
             } else if (gameState == Constants.GET_O_MOVE) {
@@ -41,6 +46,8 @@ public class EventLoop {
                 col = ui.getMoveCol(state.getWhoseMove(), state.getXName(), state.getOName());
                 if (ui.isLegalMove(state, row, col)) {
                     state.setGameState(Constants.MAKE_MOVE);
+                } else {
+                    ui.printInvalidRowOrColumn();
                 }
 
             } else if (gameState == Constants.MAKE_MOVE) {
@@ -61,10 +68,10 @@ public class EventLoop {
 
             } else if (gameState == Constants.CHECK_IF_TIE) {
                 if (state.isTie()) {
-                    ui.printTieGame();
+                    ui.printTieGame(state);
                     state.setGameState(Constants.GAME_OVER);
                 } else {
-                    state.setWhoseMore(state.getWhoseMove() * -1);
+                    state.setWhoseMove(state.getWhoseMove() * -1);
                     if (state.getWhoseMove() == Constants.X) {
                         state.setGameState(Constants.GET_X_MOVE);
                     } else {
@@ -82,10 +89,10 @@ public class EventLoop {
 
             } else if (gameState == Constants.GAME_OVER) {
                 if (ui.startNewGame()) {
-
                     state.setGameState(Constants.STANDBY);
                 } else {
                     state.setGameState(Constants.QUIT_PROGRAM);
+                    System.out.printf(Constants.TITLE);
                 }
             }
         }

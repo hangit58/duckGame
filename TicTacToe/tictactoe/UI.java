@@ -1,7 +1,6 @@
 package tictactoe;
 import java.util.Scanner;
 import java.util.InputMismatchException;
-
 /**
  * UI class
  */
@@ -23,6 +22,7 @@ public class UI
         } else {
             return " ";
         }
+
     }
 
     public String getPlayerName(int whoseMove, String xName, String yName) {
@@ -30,11 +30,15 @@ public class UI
     }
 
     public boolean isLegalMove(State state, int row, int col) {
-        return 1 <= row && row <= Constants.BOARD_SIZE &&
+        if (1 <= row &&row <= Constants.BOARD_SIZE &&
         1 <= col && col <= Constants.BOARD_SIZE &&
-        state.getBoardCell(row-1, col-1) == Constants.BLANK;
+        state.getBoardCell(row -1, col- 1) == Constants.BLANK) {
+            return true;
+        } else {
+            System.out.println(Constants.INVALID_MOVE_ERROR);
+            return false;
+        } 
     }
-
     // Prompt for input methods
     public String promptForName(String player) {
         System.out.printf(Constants.GET_PLAYER_NAME, player);
@@ -44,20 +48,19 @@ public class UI
     public int getMoveRow(int whoseMove, String xName, String oName) {
         int row = 0;
         while (true) {
-            System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
+            System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove,xName, oName));
             try {
                 row = scanner.nextInt();
                 if (row < 1 || row > Constants.BOARD_SIZE) {
                     printInvalidRowOrColumn();
                     System.out.println();
                     scanner.nextLine();
-                } else {
+                } else{
                     return row;
                 }
             } catch (InputMismatchException error) {
                 printInvalidRowOrColumn();
                 System.out.println();
-                scanner.nextLine();
             }
         }
     }
@@ -72,7 +75,8 @@ public class UI
                     printInvalidRowOrColumn();
                     System.out.println();
                     scanner.nextLine();
-                } else {
+                }
+                else {
                     return col;
                 }
             } catch (InputMismatchException error) {
@@ -112,26 +116,18 @@ public class UI
     }
 
     public void printMove(State state, int row, int col) {
-        System.out.printf(Constants.PRINT_MOVE,
-            getXOrO(state.getWhoseMove()),
-            getPlayerName(state.getWhoseMove(),
-                state.getXName(), state.getOName()),
-            row,
-            col
-        );
-        System.out.println();
+        System.out.printf(Constants.PRINT_MOVE, getXOrO(state.getWhoseMove()),getPlayerName(state.getWhoseMove(), state.getXName(), state.getOName()), row, col);
+        System.out.println(); 
     } 
 
     public void printWinner(State state) {
-        System.out.printf(Constants.WINNER,
-            getXOrO(state.getWhoseMove()),
-            getPlayerName(state.getWhoseMove(),
-                state.getXName(), state.getOName())
-        );
+        printBoard(state);
+        System.out.printf(Constants.WINNER, getXOrO(state.getWhoseMove()),getPlayerName(state.getWhoseMove(), state.getXName(), state.getOName()));
         System.out.println();
     }
 
-    public void printTieGame() {
+    public void printTieGame(State state) {
+        printBoard(state);
         System.out.println(Constants.TIE_GAME);
     }
 }

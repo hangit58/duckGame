@@ -51,7 +51,7 @@ public class State
         return whoseMove;
     }
 
-    public void setWhoseMore(int whoseMove) {
+    public void setWhoseMove(int whoseMove) {
         this.whoseMove = whoseMove;
     }
 
@@ -78,5 +78,4 @@ public class State
     public void setBoardCell(int row, int col, int value) {
         this.board[row][col] = value;
     }
-
 }
