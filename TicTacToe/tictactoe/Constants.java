@@ -35,7 +35,7 @@ public class Constants
     public static final String TITLE = "Thanks for playing Tic-Tac-Toe!";
     public static final String GET_ROW_MOVE = "Player %s (%s): Enter the row for your next move --> ";
     public static final String GET_COL_MOVE = "Player %s (%s): Enter the column for your next move --> ";
-    public static final String INVALID_ROW_OR_COLUMN = "\nYour row and column must be and empty spot of 1, 2, or 3\n";
+    public static final String INVALID_ROW_OR_COLUMN = "\nYour row and column must be an empty spot of 1, 2, or 3\n";
     public static final String INVALID_MOVE_ERROR = "\nRow %d column %d is not a valid move. Please try again\n";
     public static final String PRINT_MOVE = "Player %s (%s) move to R:%d C:%d";
     public static final String WINNER = "%s - %s is the winner!";
