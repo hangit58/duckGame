@@ -31,16 +31,16 @@ public class UI
 
     public boolean isLegalMove(State state, int row, int col) {
         if (1 <= row &&row <= Constants.BOARD_SIZE &&
-        1 <= col && col <= Constants.BOARD_SIZE &&
-        state.getBoardCell(row -1, col- 1) == Constants.BLANK) {
+            1 <= col && col <= Constants.BOARD_SIZE &&
+            state.getBoardCell(row -1, col- 1) == Constants.BLANK) {
             return true;
         } else {
             System.out.println(Constants.INVALID_MOVE_ERROR);
             return false;
         } 
     }
-    // Prompt for input methods
-    public String promptForName(String player) {
+        // Prompt for input methods
+        public String promptForName(String player) {
         System.out.printf(Constants.GET_PLAYER_NAME, player);
         return scanner.next();
     }
