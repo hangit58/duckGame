@@ -61,6 +61,7 @@ public class UI
             } catch (InputMismatchException error) {
                 printInvalidRowOrColumn();
                 System.out.println();
+                scanner.next();
             }
         }
     }
@@ -82,7 +83,7 @@ public class UI
             } catch (InputMismatchException error) {
                 printInvalidRowOrColumn();
                 System.out.println();
-                scanner.nextLine();
+                scanner.next();
             }
         }
     }
