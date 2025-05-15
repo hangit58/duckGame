@@ -6,6 +6,11 @@ private String name;
 private String color;
 private ArrayList<String> inventory;
 
+/**
+ * Constructor 
+ * @param name - this names the animal
+ * @param color - this is the animals color 
+ */
 public Animal (String name, String color) {
     this.name = name;
     this.color = color;
